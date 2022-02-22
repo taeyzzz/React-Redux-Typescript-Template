@@ -1,0 +1,212 @@
+swagger: "2.0"
+info:
+  description: "This is a sample server Petstore server.  You can find out more about     Swagger at [http://swagger.io](http://swagger.io) or on [irc.freenode.net, #swagger](http://swagger.io/irc/).      For this sample, you can use the api key `special-key` to test the authorization     filters."
+  version: "1.0.0"
+  title: "Swagger Petstore"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "apiteam@swagger.io"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "petstore.swagger.io"
+basePath: "/v2"
+tags:
+- name: "post"
+  description: "Post message"
+- name: "comment"
+  description: "Comment message"
+schemes:
+- "https"
+- "http"
+paths:
+  /posts:
+    get:
+      tags:
+      - "post"
+      summary: "List Post"
+      description: "Get list posts"
+      operationId: "GetListPosts"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Post"
+    post:
+      tags:
+      - "post"
+      summary: "Create post"
+      description: ""
+      operationId: "CreatePost"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "post"
+        description: "Post Payload"
+        required: true
+        schema:
+          $ref: "#/definitions/CreatePostData"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Post"
+  /posts/{id}:
+    get:
+      tags:
+      - "post"
+      summary: "Get post by id"
+      description: ""
+      operationId: "GetPostId"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Get Post detail"
+        required: true
+        type: "number"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Post"
+    delete:
+      tags:
+      - "post"
+      summary: "Delete post by id"
+      description: ""
+      operationId: "DeletePostId"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Delete Post detail"
+        required: true
+        type: "number"
+      responses:
+        "204":
+          description: "successful operation"
+  /comments:
+    get:
+      tags:
+      - "comments"
+      summary: "List Comments"
+      description: "Get list comments"
+      operationId: "GetListComments"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "Success"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Comment"
+    post:
+      tags:
+      - "comments"
+      summary: "Create comments"
+      description: ""
+      operationId: "CreateComments"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "post"
+        description: "Post Payload"
+        required: true
+        schema:
+          $ref: "#/definitions/CreateCommentData"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Comment"
+  /comments/{id}:
+    get:
+      tags:
+      - "comments"
+      summary: "Get comment by id"
+      description: ""
+      operationId: "GetCommentId"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Get Comment detail"
+        required: true
+        type: "number"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/Comment"
+    delete:
+      tags:
+      - "post"
+      summary: "Delete comment by id"
+      description: ""
+      operationId: "DeleteCommentId"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Delete Comment detail"
+        required: true
+        type: "number"
+      responses:
+        "204":
+          description: "successful operation"
+  
+definitions:
+  Post:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      title:
+        type: "string"
+      author:
+        type: "string"
+  CreatePostData:
+    type: "object"
+    required:
+    - "title"
+    - "author"
+    properties:
+      title:
+        type: "string"
+      author:
+        type: "string"
+  Comment:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      body:
+        type: "string"
+      postId:
+        type: "integer"
+  CreateCommentData:
+    type: "object"
+    properties:
+      body:
+        type: "string"
+      postId:
+        type: "integer"
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
