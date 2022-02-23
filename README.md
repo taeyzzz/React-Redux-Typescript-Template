@@ -12,7 +12,7 @@
 - [X] Router
 - [X] Loadable
 - [X] Redux
-- [ ] React query
+- [X] React query
 
 # How to run project
 
