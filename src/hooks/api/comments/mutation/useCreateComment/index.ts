@@ -5,7 +5,8 @@ const commentsAPI = new CommentsApi()
 
 export const USE_MUTATION_CREATE_COMMENT = 'USE_MUTATION_CREATE_COMMENT'
 
-const useCreateComment = (): UseMutationResult<Comment, unknown, CreateCommentData, unknown> => useMutation(async (data: CreateCommentData) => {
+const useCreateComment = (): UseMutationResult<Comment, unknown, CreateCommentData, unknown> =>
+  useMutation(USE_MUTATION_CREATE_COMMENT, async (data: CreateCommentData) => {
     const response = await commentsAPI.createComments(data)
     return response.data
   })
